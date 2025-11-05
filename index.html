@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étude de Marché - Mini Projecteurs | MonBusiness Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .client-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            display: inline-block;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 15px 0;
+        }
+
+        nav li {
+            margin: 5px 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin: 40px auto;
+            padding: 50px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: var(--secondary);
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin: 20px 0 10px;
+            color: var(--dark);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .card {
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+            background: var(--light);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: var(--light);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 3px;
+        }
+
+        .badge-primary { background: var(--primary); color: white; }
+        .badge-success { background: var(--success); color: white; }
+        .badge-warning { background: var(--warning); color: white; }
+        .badge-danger { background: var(--danger); color: white; }
+        .badge-secondary { background: var(--secondary); color: white; }
+
+        /* Alert boxes */
+        .alert {
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-color: var(--primary);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            border-color: var(--warning);
+            color: #92400e;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        /* Lists */
+        ul.custom-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.custom-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        ul.custom-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Competitive analysis */
+        .competitor-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .competitor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .competitor-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .traffic-badge {
+            background: var(--success);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Avatar cards */
+        .avatar-card {
+            border-left: 5px solid var(--primary);
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .avatar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .consciousness-level {
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .level-2 { background: #fbbf24; color: #78350f; }
+        .level-3 { background: #60a5fa; color: #1e3a8a; }
+        .level-4 { background: #a78bfa; color: #4c1d95; }
+
+        .section-block {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid var(--border);
+        }
+
+        .subsection {
+            margin: 15px 0;
+        }
+
+        .subsection-title {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Price comparison */
+        .price-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-row:nth-child(odd) {
+            background: var(--light);
+        }
+
+        .price-channel {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .price-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .highlight-row {
+            background: #fef3c7 !important;
+            border-left: 5px solid var(--warning);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            nav, footer {
+                display: none;
+            }
+
+            section {
+                page-break-inside: avoid;
+                box-shadow: none;
+            }
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .strategy-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .technique-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .technique-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>📊 Étude de Marché Complète</h1>
+            <p>Mini Projecteurs de Cinéma Portables</p>
+            <div class="client-info">
+                <p><strong>Client :</strong> Site E-commerce Dropshipping</p>
+                <p><strong>Positionnement Prix :</strong> 80-100€</p>
+                <p><strong>Agence :</strong> MonBusiness - Social Ads Agency</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#synthese">📋 Synthèse</a></li>
+            <li><a href="#concurrence">🎯 Concurrence</a></li>
+            <li><a href="#avatars">👥 Avatars</a></li>
+            <li><a href="#recommandations">💡 Recommandations</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- SECTION SYNTHÈSE EXÉCUTIVE -->
+        <section id="synthese">
+            <h2>📋 Synthèse Exécutive</h2>
+
+            <div class="alert alert-info">
+                <strong>🎯 Objectif de l'étude :</strong> Onboarder correctement le client avec une analyse complète du marché (Avatar / Offre / Concurrence) pour optimiser les campagnes Meta Ads et maximiser le ROAS.
+            </div>
+
+            <h3>📊 Contexte du Marché</h3>
+            <p>Le marché européen des projecteurs représente <strong>452,46 millions USD en 2024</strong>, avec la France comme 3ème marché (41,63M USD). Le segment des mini-projecteurs portables connaît une croissance explosive portée par :</p>
+
+            <ul class="custom-list">
+                <li>L'essor du télétravail et du nomadisme digital</li>
+                <li>La demande pour des expériences home cinéma abordables</li>
+                <li>Le boom du social commerce (TikTok Shop notamment)</li>
+                <li>La culture vanlife et camping moderne</li>
+            </ul>
+
+            <h3>⚠️ Challenge Principal</h3>
+            <div class="alert alert-warning">
+                <strong>Positionnement Prix Sous Pression :</strong><br>
+                Votre client se situe à <strong>80-100€</strong> dans un marché hyper-compétitif où TikTok Shop propose des produits similaires à <strong>~28€</strong> (TOP 4 des ventes). Il faut justifier un premium de 50-70€ via la qualité perçue, le service client et un storytelling différenciant.
+            </div>
+
+            <h3>🎯 Segments d'Audience Identifiés</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🎬</span>
+                        <span class="card-title">Cinéphiles</span>
+                    </div>
+                    <p><strong>25-50 ans</strong> - Soirées Netflix, expérience immersive</p>
+                    <span class="badge badge-primary">Solution-Aware</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">👨‍👩‍👧</span>
+                        <span class="card-title">Familles</span>
+                    </div>
+                    <p><strong>30-45 ans</strong> - Moments conviviaux, occupation enfants</p>
+                    <span class="badge badge-warning">Problem-Aware</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🎮</span>
+                        <span class="card-title">Gamers</span>
+                    </div>
+                    <p><strong>18-35 ans</strong> - Setup portable, immersion maximale</p>
+                    <span class="badge badge-danger">Product-Aware</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🧳</span>
+                        <span class="card-title">Aventuriers</span>
+                    </div>
+                    <p><strong>25-40 ans</strong> - Vanlife, camping, road trips</p>
+                    <span class="badge badge-primary">Solution-Aware</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">💼</span>
+                        <span class="card-title">Professionnels</span>
+                    </div>
+                    <p><strong>25-55 ans</strong> - Présentations clients, flexibilité</p>
+                    <span class="badge badge-warning">Problem-Aware</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🧑‍🎓</span>
+                        <span class="card-title">Étudiants</span>
+                    </div>
+                    <p><strong>18-25 ans</strong> - Setup cool, budget limité</p>
+                    <span class="badge badge-primary">Solution-Aware</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SECTION ANALYSE CONCURRENTIELLE -->
+        <section id="concurrence">
+            <h2>🎯 Analyse Concurrentielle Complète</h2>
+
+            <h3>📊 Structure du Marché en 3 Catégories</h3>
+
+            <!-- CATÉGORIE 1 : MARQUES ÉTABLIES -->
+            <h3 style="color: var(--success);">Catégorie 1 : Marques Établies / Premium</h3>
+            <p>Marques reconnues avec forte présence web (100k+ visites/mois), positionnées sur qualité et innovation technologique.</p>
+
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <span class="competitor-name">1. XIAOMI</span>
+                    <span class="traffic-badge">9,4M visites/mois</span>
+                </div>
+                <p><strong>URL :</strong> <a href="https://www.mi.com/fr/product-list/tvs-ha/projector/" target="_blank">mi.com/fr/projector</a></p>
+                <p><strong>Positionnement :</strong> Budget à milieu de gamme</p>
+                <p><strong>Prix :</strong> 300-1 000€ (sweet spot 599-999€)</p>
+                <p><strong>Gamme :</strong> Projecteurs portables et smart (Mi Smart Projector 2/Pro, Laser Projector)</p>
+                <div style="margin-top: 15px;">
+                    <strong>✨ Points Forts :</strong>
+                    <ul class="custom-list">
+                        <li>Meilleur rapport qualité-prix du segment</li>
+                        <li>Intégration écosystème Mi Home</li>
+                        <li>Android TV avec Google Assistant intégré</li>
+                        <li>Calibration automatique (auto-focus, keystone)</li>
+                        <li>Distribution massive (19% part de marché smartphones EU)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <span class="competitor-name">2. BENQ</span>
+                    <span class="traffic-badge">600k visites/mois</span>
+                </div>
+                <p><strong>URL :</strong> <a href="https://www.benq.eu/fr-fr/" target="_blank">benq.eu</a></p>
+                <p><strong>Positionnement :</strong> Milieu de gamme à premium</p>
+                <p><strong>Prix :</strong> 500-6 000€ (sweet spot 1 000-3 000€)</p>
+                <p><strong>Gamme :</strong> Portable (GV), Home Cinéma 4K (W), Gaming (TK/X3100i), UST Laser</p>
+                <div style="margin-top: 15px;">
+                    <strong>✨ Points Forts :</strong>
+                    <ul class="custom-list">
+                        <li>Technologie CinematicColor (95% BT.2020, 98% DCI-P3)</li>
+                        <li>Source lumineuse 4LED avancée (20-30k heures)</li>
+                        <li>Performance gaming exceptionnelle (4-6ms, 4K@120Hz)</li>
+                        <li>#1 fabricant mondial projecteurs DLP</li>
+                        <li>Support HDR-PRO avec Filmmaker Mode</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <span class="competitor-name">3. XGIMI</span>
+                    <span class="traffic-badge">847k visites/mois</span>
+                </div>
+                <p><strong>URL :</strong> <a href="https://eu.xgimi.com/" target="_blank">eu.xgimi.com</a></p>
+                <p><strong>Positionnement :</strong> Milieu de gamme à premium</p>
+                <p><strong>Prix :</strong> 429-2 999€</p>
+                <p><strong>Gamme :</strong> Home Theater (HORIZON), Portables (MoGo), UST Laser (AURA 2)</p>
+                <div style="margin-top: 15px;">
+                    <strong>✨ Points Forts :</strong>
+                    <ul class="custom-list">
+                        <li>#1 mondial projecteurs HOME (6,5% parts marché)</li>
+                        <li>Technologie ISA 3.0 (auto-focus, keystone, obstacles)</li>
+                        <li>Google TV avec Netflix officiel (rare)</li>
+                        <li>Audio Harman Kardon 8-12W intégré</li>
+                        <li>Support Dolby Vision + IMAX Enhanced</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <span class="competitor-name">4. EPSON</span>
+                    <span class="traffic-badge">413-437k visites/mois</span>
+                </div>
+                <p><strong>URL :</strong> <a href="https://www.epson.fr/fr_FR/produits/projector/" target="_blank">epson.fr/projector</a></p>
+                <p><strong>Positionnement :</strong> Milieu de gamme à premium</p>
+                <p><strong>Prix :</strong> 389-30 000€+ (sweet spot consommateur 800-2 500€)</p>
+                <p><strong>Gamme :</strong> Portables smart (Lifestudio), Home Cinéma 4K (EH-TW), Business (EB)</p>
+                <div style="margin-top: 15px;">
+                    <strong>✨ Points Forts :</strong>
+                    <ul class="custom-list">
+                        <li>Technologie propriétaire 3LCD (couleurs 3x plus lumineuses)</li>
+                        <li>Son by Bose sur modèles Lifestudio</li>
+                        <li>Intégration Google TV complète</li>
+                        <li>Durabilité exceptionnelle (20k heures, garantie 5 ans)</li>
+                        <li>Flexibilité installation (décalage objectif ±96%)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p style="margin-top: 30px; font-style: italic; color: var(--secondary);">
+                <strong>Note :</strong> D'autres marques établies existent sur ce marché (ViewSonic, LG, Hisense, Optoma) avec des positionnements similaires. Les 4 marques ci-dessus représentent les acteurs les plus visibles et accessibles pour le grand public français.
+            </p>
+
+            <!-- CATÉGORIE 2 : MARKETPLACES -->
+            <h3 style="color: var(--warning); margin-top: 50px;">Catégorie 2 : Marketplaces & Social Commerce</h3>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🛒</span>
+                        <span class="card-title">AMAZON</span>
+                    </div>
+                    <p><strong>Positionnement :</strong> Leader mondial e-commerce</p>
+                    <p><strong>Prix mini projecteurs :</strong> 50-300€</p>
+                    <ul class="custom-list" style="margin-top: 10px;">
+                        <li>Avis clients massifs</li>
+                        <li>Prime et livraison rapide</li>
+                        <li>Comparaison facile entre marques</li>
+                        <li>Promotions fréquentes</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">💰</span>
+                        <span class="card-title">TEMU</span>
+                    </div>
+                    <p><strong>Positionnement :</strong> Prix ultra-compétitifs</p>
+                    <p><strong>Prix mini projecteurs :</strong> 25-80€</p>
+                    <ul class="custom-list" style="margin-top: 10px;">
+                        <li>Direct de Chine</li>
+                        <li>Croissance explosive en Europe</li>
+                        <li>Positionnement "prix cassés"</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🎵</span>
+                        <span class="card-title">TIKTOK SHOP</span>
+                    </div>
+                    <p><strong>Positionnement :</strong> Social commerce viral</p>
+                    <p><strong>Prix moyen :</strong> ~28€ (≈30$)</p>
+                    <div class="alert alert-warning" style="margin-top: 10px;">
+                        <strong>⚠️ MENACE DIRECTE :</strong>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>TOP 4 des ventes catégorie projecteurs</li>
+                            <li>Audience jeune 18-35 ans très engagée</li>
+                            <li>Achats impulsifs via vidéos courtes</li>
+                            <li>Codes promo agressifs + gamification</li>
+                            <li>Concurrence féroce sur l'attention</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CATÉGORIE 3 : DROPSHIPPING -->
+            <h3 style="color: var(--danger); margin-top: 50px;">Catégorie 3 : Sites E-commerce Dropshipping (Concurrents Directs)</h3>
+
+            <div class="alert alert-info">
+                <strong>📊 Positionnement Prix Standard :</strong> 80-100€<br><br>
+                C'est la fourchette typique des sites dropshipping français/européens qui :
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>Achètent sur AliExpress/CJ Dropshipping à 25-35€</li>
+                    <li>Vendent entre 80-100€</li>
+                    <li>Marge brute : 50-75€ par vente</li>
+                    <li>Investissent massivement en Meta Ads (Facebook/Instagram)</li>
+                </ul>
+            </div>
+
+            <h4 style="margin-top: 30px; color: var(--secondary);">Exemples de Concurrents Directs Analysés</h4>
+
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <span class="competitor-name">CINÉLUNE</span>
+                    <span class="badge badge-danger">Concurrent Direct</span>
+                </div>
+                <p><strong>URL :</strong> <a href="https://www.cinelune.fr/" target="_blank">cinelune.fr</a></p>
+                <p><strong>Positionnement :</strong> "Le projecteur 4K qui transforme votre maison en cinéma"</p>
+                <p><strong>Prix :</strong> ~70€ (mentionné dans témoignage client "moins de 70€")</p>
+                
+                <div style="margin-top: 20px;">
+                    <strong>🎯 Stratégie Marketing Observée :</strong>
+                    <ul class="custom-list" style="margin-top: 10px;">
+                        <li><strong>Angle émotionnel fort :</strong> "Comme au cinéma", expérience immersive familiale</li>
+                        <li><strong>Social proof massif :</strong> 9 témoignages clients détaillés avec prénoms</li>
+                        <li><strong>Logos médias :</strong> "Vu sur" TF1, Game One (crédibilité perçue)</li>
+                        <li><strong>Specs techniques claires :</strong> 1920×1080P native, 1200 lumens, Android intégré</li>
+                        <li><strong>Réassurance complète :</strong> 30j satisfait ou remboursé, garantie 1 an, SAV 7j/7</li>
+                        <li><strong>Compatibilité élargie :</strong> PS5, Xbox, Switch, Netflix/Disney+ préinstallés</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <strong>✨ Points Forts Copywriting :</strong>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Témoignages ultra-personnalisés ("Je l'utilise pour jouer", "Je le regarde au plafond")</li>
+                        <li>FAQ exhaustive (15+ questions) qui lève toutes les objections</li>
+                        <li>Angle lifestyle varié : gaming, famille, lecture, match foot</li>
+                        <li>Mise en avant rapport qualité-prix ("moins de 70€ pour rendu TV à 500€")</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <strong>⚠️ Faiblesses Potentielles :</strong>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Prix très agressif (70€) = perception possible de "trop cheap"</li>
+                        <li>Promesse "4K" mais résolution native 1080p (upscaling marketing)</li>
+                        <li>Design site très chargé, peu premium</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <span class="competitor-name">VISION BEAM</span>
+                    <span class="badge badge-danger">Concurrent International</span>
+                </div>
+                <p><strong>URL :</strong> <a href="https://de.vision-beam.com/" target="_blank">vision-beam.com</a></p>
+                <p><strong>Positionnement :</strong> "Transform everyday spaces into extraordinary experiences"</p>
+                <p><strong>Prix :</strong> Non visible directement (site axé produits lifestyle)</p>
+                <p><strong>Marché :</strong> International (site allemand, 50 000+ clients revendiqués)</p>
+                
+                <div style="margin-top: 20px;">
+                    <strong>🎯 Stratégie Marketing Observée :</strong>
+                    <ul class="custom-list" style="margin-top: 10px;">
+                        <li><strong>Positionnement premium lifestyle :</strong> Design épuré, moderne, aspirationnel</li>
+                        <li><strong>Social proof chiffré :</strong> "50,000+ Happy Customers Worldwide"</li>
+                        <li><strong>Frais de port offerts :</strong> Livraison gratuite >100$ (incitation panier moyen)</li>
+                        <li><strong>Shipping premium :</strong> Option express à 14,95$ (perception qualité)</li>
+                        <li><strong>Garanties rassurantes :</strong> 60 jours d'essai à domicile + garantie 1 an</li>
+                        <li><strong>Sécurité paiement :</strong> "Bank-level encryption" mise en avant</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <strong>✨ Points Forts Différenciants :</strong>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Branding lifestyle global (pas juste "projecteur cheap")</li>
+                        <li>International scale (multi-pays, multi-devises)</li>
+                        <li>Période d'essai généreuse (60j vs 30j standard)</li>
+                        <li>Design site très propre, confiance immédiate</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <strong>⚠️ Différences avec Marché FR :</strong>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Prix en $ (marché US/international, probablement plus élevé)</li>
+                        <li>Frais de port visibles (9,95$ standard) = transparence mais friction</li>
+                        <li>Positionnement plus haut de gamme perçu</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-success" style="margin-top: 30px;">
+                <h4>📊 Analyse Comparative : Ce que Vous Devez Retenir</h4>
+                <p style="margin-top: 15px;"><strong>Les concurrents dropshipping performants partagent ces éléments :</strong></p>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>✅ <strong>Social proof massif</strong> (témoignages détaillés + chiffres clients)</li>
+                    <li>✅ <strong>FAQ exhaustive</strong> qui anticipe TOUTES les objections</li>
+                    <li>✅ <strong>Garanties rassurantes</strong> (30-60j satisfait ou remboursé minimum)</li>
+                    <li>✅ <strong>Angles marketing variés</strong> (famille, gaming, extérieur, lecture...)</li>
+                    <li>✅ <strong>Specs techniques claires</strong> (résolution native, compatibilités)</li>
+                    <li>✅ <strong>Réassurance service</strong> (SAV réactif, garantie constructeur)</li>
+                </ul>
+                
+                <p style="margin-top: 20px; font-weight: 600; color: var(--success);">
+                    💡 <strong>Votre opportunité :</strong> Combiner la stratégie copywriting de CinéLune (témoignages détaillés) avec le positionnement lifestyle premium de Vision Beam (design + garanties généreuses) pour vous différencier.
+                </p>
+            </div>
+
+            <!-- TABLEAU COMPARATIF PRIX -->
+            <h3 style="margin-top: 40px;">📊 Analyse Comparative des Prix par Canal</h3>
+
+            <div class="price-table">
+                <div class="price-row">
+                    <div>
+                        <span class="price-channel">🎵 TikTok Shop</span>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Prix cassé, viral, TOP 4 ventes</p>
+                    </div>
+                    <span class="price-value">~28€</span>
+                </div>
+
+                <div class="price-row">
+                    <div>
+                        <span class="price-channel">💰 Temu</span>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Low-cost agressif</p>
+                    </div>
+                    <span class="price-value">25-80€</span>
+                </div>
+
+                <div class="price-row">
+                    <div>
+                        <span class="price-channel">🛒 Amazon</span>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Comparaison facile, Prime</p>
+                    </div>
+                    <span class="price-value">50-300€</span>
+                </div>
+
+                <div class="price-row highlight-row">
+                    <div>
+                        <span class="price-channel">🎯 Sites Dropshipping (VOTRE SEGMENT)</span>
+                        <p style="font-size: 0.9rem; color: #92400e; margin-top: 5px; font-weight: 600;">Votre positionnement actuel</p>
+                    </div>
+                    <span class="price-value" style="color: var(--warning);">80-100€</span>
+                </div>
+
+                <div class="price-row">
+                    <div>
+                        <span class="price-channel">📱 Xiaomi (établi)</span>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Qualité reconnue, écosystème</p>
+                    </div>
+                    <span class="price-value">300-1000€</span>
+                </div>
+
+                <div class="price-row">
+                    <div>
+                        <span class="price-channel">⭐ Marques Premium</span>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">BenQ, Epson, LG, XGIMI</p>
+                    </div>
+                    <span class="price-value">1500-5000€+</span>
+                </div>
+            </div>
+
+            <div class="alert alert-warning" style="margin-top: 30px;">
+                <strong>🎯 ENJEU CLÉ DE POSITIONNEMENT :</strong><br><br>
+                Votre client se situe dans <strong>la zone rouge</strong> entre TikTok Shop (28€) et les marques établies (300€+).<br><br>
+                <strong>Challenge :</strong> Justifier le premium de 50-70€ vs TikTok Shop avec :
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>✅ Meilleure qualité perçue (preuves visuelles, specs réelles)</li>
+                    <li>✅ Service client / SAV en français</li>
+                    <li>✅ Garantie 2 ans / livraison rapide depuis France</li>
+                    <li>✅ Storytelling produit différenciant</li>
+                    <li>✅ Créas Meta Ads qui cassent le scroll</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- SECTION AVATARS DÉTAILLÉS -->
+        <section id="avatars">
+            <h2>👥 Analyse Détaillée des Avatars Clients</h2>
+
+            <div class="alert alert-info">
+                <strong>📚 Méthodologie :</strong> Analyse basée sur un framework de copywriting stratégique éprouvé.<br>
+                Chaque avatar est analysé selon son <strong>niveau de conscience</strong> (1-5) et les techniques de persuasion appliquées.
+            </div>
+
+            <!-- AVATAR 1 : CINÉPHILE -->
+            <div class="avatar-card">
+                <div class="avatar-header">
+                    <div>
+                        <span class="card-icon">🎬</span>
+                        <span class="avatar-title">Avatar 1 : Le Cinéphile à la Maison</span>
+                    </div>
+                    <span class="consciousness-level level-3">SOLUTION-AWARE (Niveau 3)</span>
+                </div>
+
+                <div class="section-block">
+                    <h4>📊 Profil Démographique</h4>
+                    <p><strong>Âge :</strong> 25-50 ans</p>
+                    <p><strong>Description :</strong> Homme ou femme qui aime les soirées cinéma ou séries en couple ou entre amis. Abonné Netflix, Prime Video ou Disney+. Valorise la qualité d'image et les expériences immersives.</p>
+                </div>
+
+                <div class="section-block">
+                    <h4>🎯 Motivations Principales</h4>
+                    <ul class="custom-list">
+                        <li>Recréer une expérience cinéma à la maison sans investir dans un home cinema</li>
+                        <li>Profiter d'une grande image sans installer de TV encombrante</li>
+                        <li>Avoir une ambiance cocooning et immersive</li>
+                    </ul>
+                </div>
+
+                <div class="section-block">
+                    <h4>⚠️ Objections / Freins</h4>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li>❌ "La qualité d'image est-elle vraiment bonne ?"</li>
+                        <li>❌ "Le son est-il suffisant sans enceintes externes ?"</li>
+                        <li>❌ "Est-ce facile à connecter à Netflix ou à mon smartphone ?"</li>
+                    </ul>
+                </div>
+
+                <div class="section-block">
+                    <h4>💬 Angles Publicitaires Recommandés</h4>
+                    <div class="strategy-grid">
+                        <div class="strategy-item">
+                            <strong>🎬</strong> "Transformez votre salon en cinéma 4K en 10 secondes"
+                        </div>
+                        <div class="strategy-item">
+                            <strong>🍿</strong> "Le cinéma à la maison sans dépenser 1000€"
+                        </div>
+                        <div class="strategy-item">
+                            <strong>🌙</strong> "Votre nouvelle routine du soir : plaid, popcorn, et grand écran"
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 30px; color: var(--secondary);">📋 PARTIE I - STRATÉGIE MARKETING</h4>
+
+                <div class="subsection">
+                    <div class="subsection-title">1️⃣ Désir de Masse</div>
+                    <p><strong>Désir profond :</strong> Recréer l'expérience cinéma premium à moindre coût + moments cocooning immersifs</p>
+                    <p><strong>Canalisation :</strong> Du désir vague "améliorer mes soirées Netflix" → vers "projecteur 4K abordable"</p>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">2️⃣ Sophistication du Marché</div>
+                    <p><strong>Stade :</strong> 3-4 (marché saturé de projecteurs)</p>
+                    <p>A vu des promesses de "qualité 4K" partout. Besoin de différenciation via mécanisme unique ou preuve sociale forte.</p>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">3️⃣ Titre/Accroche</div>
+                    <p><strong>Structure :</strong> Problème (pas de cinéma maison) → Rapidité solution (10 sec) → Bénéfice (4K)</p>
+                    <p><strong>Exemple :</strong> "Transformez votre salon en cinéma 4K en 10 secondes"</p>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">4️⃣ Planification Créative</div>
+                    <ul class="custom-list">
+                        <li><strong>Format :</strong> Vidéo avant/après (salon normal → ambiance ciné)</li>
+                        <li><strong>Contenu éducatif :</strong> "Comment créer votre home cinéma pour moins de 100€"</li>
+                        <li><strong>Advertorial :</strong> "Top 3 projecteurs portables testés par des cinéphiles"</li>
+                        <li><strong>Reciblage :</strong> Témoignages clients montrant setup + qualité image</li>
+                    </ul>
+                </div>
+
+                <h4 style="margin-top: 30px; color: var(--secondary);">📋 PARTIE II - TECHNIQUES COPYWRITING</h4>
+
+                <div class="technique-box">
+                    <div class="technique-title">1. Intensification</div>
+                    <p>"Non seulement vous avez l'image 4K, mais aussi le son immersif Dolby, la connexion Netflix directe, PLUS l'installation en 10 secondes"</p>
+                    <p><strong>Visualisation :</strong> "Imaginez : dimanche soir, plaid, popcorn, votre série préférée sur 100 pouces..."</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">2. Identification</div>
+                    <p><strong>Rôle social :</strong> "Les cinéphiles exigeants choisissent ce projecteur"</p>
+                    <p><strong>Image de soi :</strong> "Vous êtes quelqu'un qui valorise la qualité sans se ruiner"</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">3. Gradualisation</div>
+                    <p>Étape 1 : "Vous adorez Netflix mais l'écran de TV vous limite..."</p>
+                    <p>Étape 2 : "Les home cinémas coûtent 2000€+ et prennent de la place..."</p>
+                    <p>Étape 3 : "Et si vous pouviez avoir la même expérience pour 90€ ?"</p>
+                    <p>Étape 4 : "Notre projecteur vous offre exactement ça grâce à..."</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">4. Redéfinition</div>
+                    <p><strong>Prix :</strong> "90€ ce n'est pas une dépense, c'est 3€/mois sur 2 ans pour 200+ soirées cinéma"</p>
+                    <p><strong>Complexité :</strong> "Pas besoin d'installer quoi que ce soit - branchez et c'est parti"</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">5. Mécanisation</div>
+                    <p>"Comment obtient-on une image 4K à ce prix ? Grâce à notre technologie LED DLP avancée qui projette 1080p natif upscalé en 4K"</p>
+                    <p>Explication simple du système de projection + correction automatique</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">6. Concentration</div>
+                    <p><strong>VS concurrents :</strong> "Contrairement aux projecteurs cheap de TikTok Shop à 30€, le nôtre a une vraie résolution native + garantie 2 ans"</p>
+                    <p><strong>VS alternatives :</strong> "Pourquoi acheter une TV 4K de 55' à 500€ quand vous pouvez avoir 100 pouces pour 90€ ?"</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">7. Camouflage</div>
+                    <p><strong>Article sponsorisé :</strong> "J'ai testé 5 projecteurs portables - voici le gagnant"</p>
+                    <p><strong>Format YouTube :</strong> "Home tour : comment j'ai créé mon cinéma maison pour 100€"</p>
+                    <p><strong>Ton sincère :</strong> "Le projecteur n'est pas parfait de jour, mais le soir c'est magique"</p>
+                </div>
+            </div>
+
+            <!-- AVATAR 2 : FAMILLES -->
+            <div class="avatar-card">
+                <div class="avatar-header">
+                    <div>
+                        <span class="card-icon">👨‍👩‍👧</span>
+                        <span class="avatar-title">Avatar 2 : Les Familles avec Enfants</span>
+                    </div>
+                    <span class="consciousness-level level-4">PROBLEM-AWARE (Niveau 4)</span>
+                </div>
+
+                <div class="section-block">
+                    <h4>📊 Profil Démographique</h4>
+                    <p><strong>Âge :</strong> 30-45 ans</p>
+                    <p><strong>Description :</strong> Parents cherchant des moments conviviaux à la maison. Utilisent le projecteur pour films d'animation, dessins animés, ou karaoké.</p>
+                </div>
+
+                <div class="section-block">
+                    <h4>🎯 Motivations Principales</h4>
+                    <ul class="custom-list">
+                        <li>Offrir des soirées cinéma en famille à petit prix</li>
+                        <li>Garder les enfants occupés les week-ends ou pendant les vacances</li>
+                        <li>Utiliser le projecteur dans la chambre des enfants ou en extérieur</li>
+                    </ul>
+                </div>
+
+                <div class="section-block">
+                    <h4>⚠️ Objections / Freins</h4>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li>❌ "Est-ce solide et facile à utiliser ?"</li>
+                        <li>❌ "Puis-je l'utiliser sur n'importe quel mur ?"</li>
+                        <li>❌ "Faut-il un adaptateur pour le brancher sur tablette ou console ?"</li>
+                    </ul>
+                </div>
+
+                <div class="section-block">
+                    <h4>💬 Angles Publicitaires Recommandés</h4>
+                    <div class="strategy-grid">
+                        <div class="strategy-item">
+                            <strong>👨‍👩‍👧</strong> "Des soirées magiques à la maison pour toute la famille"
+                        </div>
+                        <div class="strategy-item">
+                            <strong>🧸</strong> "Le cinéma des enfants dans leur chambre"
+                        </div>
+                        <div class="strategy-item">
+                            <strong>🎁</strong> "Le cadeau parfait pour des souvenirs inoubliables"
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 30px; color: var(--secondary);">📋 STRATÉGIE & TECHNIQUES CLÉS</h4>
+
+                <div class="subsection">
+                    <div class="subsection-title">Désir de Masse</div>
+                    <p>Créer des souvenirs magiques en famille + occuper intelligemment les enfants. Problème latent : les écrans isolent, besoin d'activités rassembleuses.</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">Intensification (Agitation Problème)</div>
+                    <p>"Chaque week-end, c'est la même question : comment occuper les enfants sans les coller devant la tablette ?"</p>
+                    <p><strong>Amplification bénéfice :</strong> "Non seulement vous créez des moments familiaux, mais vous développez aussi leur imaginaire, leur attention..."</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">Gradualisation (P-A-S)</div>
+                    <p>✅ "Vous cherchez à créer des moments de qualité en famille..." (acquiesce)</p>
+                    <p>⚠️ "Les écrans individuels séparent plus qu'ils ne rassemblent..." (constat)</p>
+                    <p>💡 "Il existe une solution simple pour créer du lien..." (espoir)</p>
+                    <p>🎯 "Le projecteur permet de partager une expérience commune..." (solution)</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">Concentration (VS Alternatives)</div>
+                    <p><strong>VS inaction :</strong> "Chaque week-end sans activité commune, c'est une occasion perdue de créer des souvenirs"</p>
+                    <p><strong>VS sortie cinéma :</strong> "Une sortie au cinéma coûte 50€ pour 4. Ce projecteur, c'est 90€ pour 100+ sorties cinéma maison"</p>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">Planification Créative</div>
+                    <ul class="custom-list">
+                        <li><strong>Contenu :</strong> "5 activités pour occuper vos enfants ce week-end"</li>
+                        <li><strong>Vidéo UGC :</strong> Vraie famille qui installe le projecteur, réaction des enfants</li>
+                        <li><strong>Lead magnet :</strong> "Guide gratuit : 20 films pour soirée famille par âge"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- AVATAR 3 : GAMER -->
+            <div class="avatar-card">
+                <div class="avatar-header">
+                    <div>
+                        <span class="card-icon">🎮</span>
+                        <span class="avatar-title">Avatar 3 : Le Gamer Nomade</span>
+                    </div>
+                    <span class="consciousness-level level-2">PRODUCT-AWARE (Niveau 2)</span>
+                </div>
+
+                <div class="section-block">
+                    <h4>📊 Profil Démographique</h4>
+                    <p><strong>Âge :</strong> 18-35 ans</p>
+                    <p><strong>Description :</strong> Homme amateur de jeux vidéo sur console ou PC portable. Souhaite jouer sur grand écran sans investir dans un écran TV.</p>
+                </div>
+
+                <div class="section-block">
+                    <h4>🎯 Motivations Principales</h4>
+                    <ul class="custom-list">
+                        <li>Jouer en grand format sur n'importe quelle surface</li>
+                        <li>Emporter le projecteur pour LAN, soirées entre amis, ou déplacements</li>
+                        <li>Avoir une immersion maximale à petit prix</li>
+                    </ul>
+                </div>
+
+                <div class="section-block">
+                    <h4>⚠️ Objections / Freins</h4>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li>❌ "Le lag est-il faible pour jouer ?"</li>
+                        <li>❌ "Peut-on brancher ma console ou manette Bluetooth ?"</li>
+                        <li>❌ "Est-ce assez lumineux pour jouer de jour ?"</li>
+                    </ul>
+                </div>
+
+                <div class="section-block">
+                    <h4>💬 Angles Publicitaires Recommandés</h4>
+                    <div class="strategy-grid">
+                        <div class="strategy-item">
+                            <strong>🕹️</strong> "Jouez comme jamais — 100 pouces de pur kiff"
+                        </div>
+                        <div class="strategy-item">
+                            <strong>⚡</strong> "Ton setup gaming, partout où tu veux"
+                        </div>
+                        <div class="strategy-item">
+                            <strong>💥</strong> "La télé portable que les gamers attendaient"
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 30px; color: var(--secondary);">📋 STRATÉGIE & TECHNIQUES CLÉS</h4>
+
+                <div class="subsection">
+                    <div class="subsection-title">Sophistication du Marché</div>
+                    <p><strong>Stade 4 :</strong> Gamers très informés, exigeants. Connaissent les specs techniques (input lag, Hz, latence). Besoin de preuves techniques + validation communauté.</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">Mécanisation (Technique)</div>
+                    <p>"Mode Gaming dédié avec réduction input lag à 28ms grâce au traitement d'image optimisé"</p>
+                    <p>"Compatible HDMI 2.0 pour 1080p@60fps natif"</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">Identification (Communauté)</div>
+                    <p>"Les vrais gamers ne se contentent pas d'un écran de laptop"</p>
+                    <p>"Rejoins la commu des gamers qui ont level-up leur setup"</p>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">Concentration (VS Concurrents)</div>
+                    <p><strong>VS TV gaming :</strong> "Une TV gaming 120Hz coûte 600€ et tu ne peux pas l'emmener"</p>
+                    <p><strong>VS projecteurs cheap :</strong> "Les projecteurs TikTok ont 200ms de lag - injouable sur FPS"</p>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">Planification Créative</div>
+                    <ul class="custom-list">
+                        <li><strong>Vidéo démo :</strong> Gameplay FIFA/Call of Duty sur projecteur avec timer latence</li>
+                        <li><strong>Partenariat :</strong> Micro-influenceur gaming Twitch/YouTube</li>
+                        <li><strong>Specs détaillées :</strong> "Input lag <30ms, compatible PS5/Xbox Series X"</li>
+                    </ul>
+                </div>
+
+                <div class="technique-box">
+                    <div class="technique-title">Camouflage</div>
+                    <p><strong>Test YouTube :</strong> "J'ai joué 10h sur ce projecteur à 90€ - voici mon verdict"</p>
+                    <p><strong>Post Reddit r/gaming :</strong> "Mon setup portable qui déchire pour les LAN"</p>
+                </div>
+            </div>
+
+            <!-- RÉSUMÉ AVATARS RESTANTS -->
+            <div class="alert alert-info" style="margin-top: 40px;">
+                <h4>📌 Autres Avatars Identifiés</h4>
+                <p>Les avatars 4, 5, 6 et 7 suivent la même méthodologie d'analyse :</p>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>🧳 Avatar 4 : L'Aventurier/Campeur</strong> - Solution-Aware (Niveau 3)</li>
+                    <li><strong>💼 Avatar 5 : Le Professionnel Nomade</strong> - Problem-Aware (Niveau 4)</li>
+                    <li><strong>🧑‍🎓 Avatar 6 : L'Étudiant en Colocation</strong> - Solution-Aware (Niveau 3)</li>
+                    <li><strong>🎁 Avatar 7 : Le Consommateur Cadeau</strong> - Product-Aware (Niveau 2)</li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic;">
+                    Chaque avatar dispose d'une analyse complète disponible dans la documentation détaillée. Le même framework Breakthrough Advertising est appliqué avec stratégies et techniques adaptées.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- SECTION RECOMMANDATIONS -->
+        <section id="recommandations">
+            <h2>💡 Recommandations Stratégiques</h2>
+
+            <div class="alert alert-info">
+                <strong>🎯 Direction Stratégique Globale :</strong><br>
+                Cette étude de marché vous donne la visibilité nécessaire pour comprendre votre environnement concurrentiel et vos audiences cibles. Voici les éléments clés à garder en tête pour votre positionnement.
+            </div>
+
+            <h3>📍 Votre Positionnement sur le Marché</h3>
+
+            <div class="competitor-card">
+                <h4 style="color: var(--warning);">La Zone Rouge : Entre Cheap et Premium</h4>
+                <p style="margin-top: 15px;">Votre produit à <strong>80-100€</strong> se situe dans une zone stratégique délicate :</p>
+                
+                <div style="margin-top: 20px; padding: 20px; background: var(--light); border-radius: 8px;">
+                    <p><strong>⬇️ En dessous de vous :</strong></p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>TikTok Shop : ~28€ (TOP 4 ventes, menace directe)</li>
+                        <li>Temu : 25-80€</li>
+                        <li>Amazon low-cost : 50-80€</li>
+                    </ul>
+
+                    <p style="margin-top: 20px;"><strong>⬆️ Au-dessus de vous :</strong></p>
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li>Xiaomi : 300-1 000€ (qualité reconnue)</li>
+                        <li>BenQ, XGIMI, Epson : 500-3 000€ (premium)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">🎯 Le Défi : Justifier le Premium de 50-70€</h3>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">✅</span>
+                        <span class="card-title">Qualité Perçue</span>
+                    </div>
+                    <p>Mettre en avant les specs techniques réelles (résolution native, luminosité) vs les fausses promesses des concurrents cheap.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🇫🇷</span>
+                        <span class="card-title">Service Client FR</span>
+                    </div>
+                    <p>SAV en français, support réactif, garantie 2 ans (vs 30 jours sur TikTok/Temu).</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🚚</span>
+                        <span class="card-title">Livraison Rapide</span>
+                    </div>
+                    <p>Expédition depuis France/Europe en 48-72h (vs 2-3 semaines depuis Chine).</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-icon">🎯</span>
+                        <span class="card-title">Storytelling Différenciant</span>
+                    </div>
+                    <p>Créer des angles publicitaires qui parlent aux émotions et besoins spécifiques de chaque avatar.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 50px;">👥 Hiérarchie des Audiences</h3>
+
+            <div class="alert alert-success">
+                <h4>🥇 Priorité #1 : Solution-Aware (50% du focus)</h4>
+                <p style="margin-top: 10px;">Les audiences qui <strong>cherchent activement</strong> un projecteur :</p>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>🎬 Cinéphile à la maison</li>
+                    <li>🧳 Aventurier/campeur/vanlifer</li>
+                    <li>🧑‍🎓 Étudiant en colocation</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Approche :</strong> Messages directs axés sur les bénéfices, la comparaison produit, et l'urgence d'achat.</p>
+            </div>
+
+            <div class="alert" style="background: #fef3c7; border-color: var(--warning); color: #92400e; margin-top: 20px;">
+                <h4>🥈 Priorité #2 : Product-Aware (30% du focus)</h4>
+                <p style="margin-top: 10px;">Les audiences qui <strong>connaissent les projecteurs</strong> mais hésitent :</p>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>🎮 Gamer nomade</li>
+                    <li>🎁 Consommateur cadeau</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Approche :</strong> Preuves sociales, comparatifs "nous vs eux", réassurance qualité et SAV.</p>
+            </div>
+
+            <div class="alert" style="background: #e0e7ff; border-color: var(--primary); color: #1e3a8a; margin-top: 20px;">
+                <h4>🥉 Priorité #3 : Problem-Aware (20% du focus)</h4>
+                <p style="margin-top: 10px;">Les audiences qui <strong>ont le problème</strong> mais ignorent la solution projecteur :</p>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>👨‍👩‍👧 Familles avec enfants</li>
+                    <li>💼 Professionnel nomade</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Approche :</strong> Contenu éducatif, agitation du problème, présentation progressive de la solution.</p>
+            </div>
+
+            <h3 style="margin-top: 50px;">🧭 Direction à Prendre</h3>
+
+            <div class="competitor-card">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    Votre mission principale : <strong>ne pas être comparé aux produits à 28€</strong>. 
+                    Si le client compare uniquement sur le prix, vous perdez. Il faut créer une <strong>perception de valeur différente</strong> 
+                    dès la première impression publicitaire.
+                </p>
+
+                <h4 style="margin-top: 30px; color: var(--primary);">Comment y arriver :</h4>
+                <ul class="custom-list" style="margin-top: 15px;">
+                    <li>Parlez à des <strong>besoins émotionnels spécifiques</strong> (moments famille, setup gaming impressionnant, aventure vanlife)</li>
+                    <li>Utilisez des <strong>visuels premium</strong> qui montrent le produit dans des contextes désirables</li>
+                    <li>Mettez en avant les <strong>différenciateurs tangibles</strong> (garantie, SAV, livraison, vraie résolution)</li>
+                    <li>Créez du <strong>storytelling authentique</strong> avec témoignages clients réels (photos UGC)</li>
+                    <li>Segmentez vos campagnes par <strong>niveau de conscience</strong> - ne parlez pas de la même façon à quelqu'un qui cherche vs quelqu'un qui découvre</li>
+                </ul>
+            </div>
+
+            <div class="alert alert-warning" style="margin-top: 40px;">
+                <h4>⚠️ Points de Vigilance</h4>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>TikTok Shop :</strong> Vos clients peuvent voir votre pub puis acheter sur TikTok à 28€ → Insistez sur les différences dès la créa</li>
+                    <li><strong>Attentes clients :</strong> Ne survendez pas - un client qui s'attend à du BenQ à 2000€ sera déçu</li>
+                    <li><strong>SAV crucial :</strong> La gestion des retours/réclamations justifie votre premium prix → Processus clair obligatoire</li>
+                    <li><strong>Délais honnêtes :</strong> Communiquez clairement les temps de livraison (5-10 jours si dropshipping)</li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: 50px;">📊 Prochaines Étapes Suggérées</h3>
+
+            <div class="strategy-grid">
+                <div class="strategy-item">
+                    <strong>1. Création de Contenu</strong><br>
+                    Produire des créas Meta Ads adaptées à chaque avatar et niveau de conscience
+                </div>
+                <div class="strategy-item">
+                    <strong>2. Optimisation Site</strong><br>
+                    Ajouter section "Nous vs Cheap" + badges réassurance + témoignages
+                </div>
+                <div class="strategy-item">
+                    <strong>3. Structure Campagnes</strong><br>
+                    Setup Meta Ads par niveau de conscience avec budgets alloués
+                </div>
+                <div class="strategy-item">
+                    <strong>4. Test & Iterate</strong><br>
+                    Lancer en test, analyser données, scaler ce qui fonctionne
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><strong>📄 Document généré par MonBusiness Agency</strong></p>
+            <p>Étude de Marché - Mini Projecteurs de Cinéma Portables</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Analyse stratégique complète : Avatars, Concurrence & Positionnement</p>
+            <p style="margin-top: 20px;">© 2025 MonBusiness - Social Ads Agency | Tous droits réservés</p>
+        </div>
+    </footer>
+
+</body>
+</html>
